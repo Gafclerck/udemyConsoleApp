@@ -1,0 +1,1 @@
+{"users": {"1": {"name": "amadou", "email": "mail", "password": "pass", "role": "ETUDIANT", "etat": 1, "courses": [], "certifs": [], "account": 3202}}, "payments": {"1": {"student_email": "mail", "amount": 200}, "2": {"student_email": "mail", "amount": 3002}}}

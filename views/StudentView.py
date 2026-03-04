@@ -16,7 +16,7 @@ class StudentView:
             return choix
         
     @staticmethod
-    def saisi_amount(): # retourne le montant saisi
+    def saisi_amount(): 
         amount = int(input("Montant: "))
         return amount 
 

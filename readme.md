@@ -9,7 +9,6 @@
 - Consulter le solde
   - recuperer le account de l'etudiant
   - afficher le account
-  - afficher etudiant.account
 - Acheter un cours
   - selectionnercours() -> Cours (listeCours(cours , True))
   - validerAchat() --> crtl
@@ -63,6 +62,10 @@
   - recuperer tous les users
   - afficher les users
 - Tableau de bord
+
+## ce qu j'ai ajouter
+
+- j'ai ajouter utils et jel'ai utiliser dans student_ctrl our les questions de oui ou non
 
 ## Architecture
 
