@@ -43,7 +43,7 @@
   - recuper la liste des etudiant inscrits a ce cours // GETTER
   - afficher ces etudiants
 - Ajouter un quiz à un cours
-  - saisir la question (type, qustion, propositions, reponse)
+  - saisir la question (type, question, propositions, reponse)
   - ajouter le quiz au cours
 - Éditer un cours
   - selectionner le cours à modifer

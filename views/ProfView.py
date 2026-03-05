@@ -2,7 +2,14 @@
 class ProfView:
     @staticmethod
     def menu():
-        menus = ["Ajouter un cours", "modifier un cours", "Supprimer un cours", "Quitter"]
+        menus = [
+            "Ajouter un cours",
+            "Afficher mes cours",
+            "Ajouter des quizzes",
+            "Modifier un cours",
+            "Voir les étudiants d'un cours",
+            "Quitter"
+        ]
         for i in range(len(menus)):
             print(f"{i+1} - {menus[i]}")
         choix = int(input("Choix : "))

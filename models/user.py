@@ -28,10 +28,15 @@ class User:
         return users_table.get(UserQuery.email == email)
     
     @classmethod
-    def getAll():
+    def getAll(klas):
         #recuperer et renvoyer tous les users
-        pass
+        users_table = db.table('users')
+        users = users_table.all()
+        return users
 
     def update(self , updated_values):
         # mettreajour le user avec les nouvelles values (updated values)
-        pass
+        course_table = db.table("users")
+        query = Query()
+        course_table.update(updated_values, query.email == self.email)
+        # pass

@@ -1,7 +1,6 @@
 from models.payement import Payement
 from models.course import Course
 from views.StudentView import StudentView
-from views.ProfView import ProfView
 from views.CourseView import CourseView
 from utils.io import yes_or_no
 
@@ -28,15 +27,21 @@ class StudentCtrl:
         course = CourseView.listCourse(Course.get_all(), with_select=True)
         if course:
             if student.get_account() >= course.price and yes_or_no("Confirmer l'abonnement à ce cours") == "yes":
-                student.update({
-                    "account" : student.get_account() - course.price,
-                    "courses" : student.get_courses() + [course]
-                })
-                student.update({"account" : student.get_account() - course.price}) 
-                course.enrolled_students.append(student.email)
-                course.update({"enrolled_students":course.enrolled_students})
+                student.update({"account" : student.get_account() - course.price})
+                enrolled = course.enrolled_students
+                enrolled.append(student.email)
+                print(course.id)
+                course.update({"enrolled_students":enrolled})
             else:
                 print("Votre solde est insuffisant pour effectué ce abonnement !")
 
-    def passer_certification():
-        pass
+    def lister_cours(student):
+        CourseView.listCourse(student.get_courses())
+
+    def lire_cours(student):
+        course = CourseView.listCourse(student.get_courses(), with_select=True)
+        StudentView.details_cours(course)
+
+    def passer_certification(student):
+        course = CourseView.listCourse(student.get_courses(), with_select=True)
+        StudentView.passer_test(course)
