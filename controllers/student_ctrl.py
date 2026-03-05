@@ -2,7 +2,7 @@ from models.payement import Payement
 from models.course import Course
 from views.StudentView import StudentView
 from views.CourseView import CourseView
-from utils.io import yes_or_no
+from utils.io import Io
 
 class StudentCtrl:
     @staticmethod
@@ -19,18 +19,15 @@ class StudentCtrl:
    
     @staticmethod
     def acheter_cours(student):
-        pass
         # valider l'achat
         # ajouter le cours au cours de l'etudiant
         # ajouter l'etudiant a la liste de etudiant inscrits a ce cours 
-
         course = CourseView.listCourse(Course.get_all(), with_select=True)
         if course:
-            if student.get_account() >= course.price and yes_or_no("Confirmer l'abonnement à ce cours") == "yes":
+            if student.get_account() >= course.price and Io.yes_or_no("Confirmer l'abonnement à ce cours") == "yes":
                 student.update({"account" : student.get_account() - course.price})
                 enrolled = course.enrolled_students
                 enrolled.append(student.email)
-                print(course.id)
                 course.update({"enrolled_students":enrolled})
             else:
                 print("Votre solde est insuffisant pour effectué ce abonnement !")

@@ -1,4 +1,4 @@
-from utils.io import get_string, yes_or_no
+from utils.io import Io
 
 class AdminView:
     @staticmethod
@@ -13,7 +13,7 @@ class AdminView:
         ]
         for i in range(len(menus)):
             print(f"{i+1} - {menus[i]}")
-        choix = int(input("Choix : "))
+        choix = Io.get_int("Choix : ")
         if 1 <= choix <= len(menus):
             return choix
         
@@ -24,14 +24,12 @@ class AdminView:
         if not users:
             print("Aucun utilisateur trouvé.")
             return None
-        
-        print("\n--- Liste des utilisateurs ---")
+        print("--- Liste des utilisateurs ---")
         for index, user in enumerate(users, 1):
             etat = "Actif" if user["etat"] == 1 else "Bloqué"
-            print(f"{index}. {user['name']} ({user['email']}) - Role: {user['role']} - État: {etat}")
-        
+            print(f"{index}- {user['name']} ({user['email']}) - Role: {user['role']} - État: {etat}")
         if with_select:
-            choice = int(input("\nChoix : "))
+            choice = Io.get_int("Choix : ")
             if 1 <= choice <= len(users):
                 return users[choice-1]
             return None

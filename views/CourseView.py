@@ -1,4 +1,4 @@
-from utils.io import get_string, yes_or_no
+from utils.io import Io
 
 class CourseView:
     @staticmethod
@@ -6,7 +6,7 @@ class CourseView:
         for index, course in enumerate(courses, 1):
             print(f"{index} - {course.title} - {course.price}")
         if with_select:
-            choice = int(input("Choix : "))
+            choice = Io.get_int("Choix : ")
             if 1 <= choice <= len(courses):
                 return courses[choice-1]
             
@@ -36,21 +36,21 @@ class CourseView:
         quizzs = []
         while True:
             print("\n--- Ajouter une question ---")
-            question = get_string("Question: ")
+            question = Io.get_string("Question: ")
             
             # Demander le type de question
-            type_question = yes_or_no("Est-ce une question à choix multiple?")
+            type_question = Io.yes_or_no("Est-ce une question à choix multiple?")
             
             if type_question == "yes":
                 # Question à choix multiple
                 options = []
                 while True:
-                    option = get_string(f"Option {len(options) + 1}: ")
+                    option = Io.get_string(f"Option {len(options) + 1}: ")
                     options.append(option)
-                    if yes_or_no("Ajouter une autre option?") != "yes":
+                    if Io.yes_or_no("Ajouter une autre option?") != "yes":
                         break
                 
-                reponse = get_string("Réponse correcte (numéro ou texte): ")
+                reponse = Io.get_string("Réponse correcte (numéro ou texte): ")
                 
                 quiz = {
                     "type": "multiple",
@@ -60,7 +60,7 @@ class CourseView:
                 }
             else:
                 # Question à réponse à saisir
-                reponse = get_string("Réponse correcte: ")
+                reponse = Io.get_string("Réponse correcte: ")
                 
                 quiz = {
                     "type": "text",
@@ -70,7 +70,7 @@ class CourseView:
             
             quizzs.append(quiz)
             
-            if yes_or_no("Ajouter une autre question?") != "yes":
+            if Io.yes_or_no("Ajouter une autre question?") != "yes":
                 break
         
         return quizzs
@@ -82,13 +82,13 @@ class CourseView:
         updated_values = {}
         print(f"\nCours actuel: {cours.title}")
         
-        if yes_or_no("Modifier le titre?") == "yes":
-            updated_values["title"] = get_string("Nouveau titre: ")
+        if Io.yes_or_no("Modifier le titre?") == "yes":
+            updated_values["title"] = Io.get_string("Nouveau titre: ")
         
-        if yes_or_no("Modifier le contenu?") == "yes":
-            updated_values["content"] = get_string("Nouveau contenu: ")
+        if Io.yes_or_no("Modifier le contenu?") == "yes":
+            updated_values["content"] = Io.get_string("Nouveau contenu: ")
         
-        if yes_or_no("Modifier le prix?") == "yes":
-            updated_values["price"] = int(get_string("Nouveau prix: "))
+        if Io.yes_or_no("Modifier le prix?") == "yes":
+            updated_values["price"] = Io.get_int("Nouveau prix: ")
         
         return updated_values

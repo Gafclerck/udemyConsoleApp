@@ -1,4 +1,5 @@
-from utils.io import get_int, get_string
+from utils.io import Io
+
 class StudentView:
     main_menu = [
         "Acheter de credit",
@@ -17,13 +18,13 @@ class StudentView:
     def menu(menus):
         for i in range(len(menus)):
             print(f"{i+1} - {menus[i]}")
-        choix = int(input("Choix : "))
+        choix = Io.get_int("Choix : ")
         if 1 <= choix <= len(menus):
             return choix
     
     @staticmethod
     def saisi_amount():
-        amount = int(input("Montant: "))
+        amount = Io.get_int("Montant: ")
         return amount 
 
     @staticmethod
@@ -57,10 +58,10 @@ class StudentView:
                 if qst["type"] == "multiple":
                     for index, option in enumerate(qst["options"], 1):
                         print(f"{index} - {option}")
-                    choix = get_int("Reponse : ")
+                    choix = Io.get_int("Reponse : ")
                     reponse = qst["options"][choix] 
                 else:
-                    reponse = get_string("Reponse : ")
+                    reponse = Io.get_string("Reponse : ")
                 if reponse == qst["reponse"]: score += 1
         else :
             print("Il n'y a pas encore de test de certification pour ce cours !")
@@ -75,10 +76,10 @@ class StudentView:
                 if qst["type"] == "multiple":
                     for index, option in enumerate(qst["options"], 1):
                         print(f"{index} - {option}")
-                    choix = get_int("Reponse : ")
+                    choix = Io.get_int("Reponse : ")
                     reponse = qst["options"][choix-1]  # Correction index
                 else:
-                    reponse = get_string("Reponse : ")
+                    reponse = Io.get_string("Reponse : ")
                 if reponse == qst["reponse"]: 
                     score += 1
             

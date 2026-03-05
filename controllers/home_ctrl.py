@@ -11,10 +11,13 @@ from controllers.prof_ctrl import ProfCtrl
 from controllers.student_ctrl import StudentCtrl
 from controllers.admin_ctrl import AdminCtrl
 
+from utils.ux import Ux
+
 class HomeCtrl:
     @staticmethod
     def main():
         while True:
+            Ux.clear()
             choice = Menu.main()
             if choice == "1":
                 user = UserCtrl.connection()
@@ -27,6 +30,7 @@ class HomeCtrl:
                         case "PROFESSEUR":
                             user = Prof(user["name"], user["email"], user["password"])
                             while True:
+                                Ux.clear()
                                 choix = ProfView.menu()
                                 match(choix):
                                     case 1:
@@ -43,10 +47,12 @@ class HomeCtrl:
                                     case 6:
                                         print("Au revoir professeur !")
                                         break
+                                Ux.pause()
 
                         case "ETUDIANT":
                             user = Student(user["name"], user["email"], user["password"])
                             while True:
+                                Ux.clear()
                                 choix = StudentView.menu(StudentView.main_menu)
                                 match(choix):
                                     case 1:
@@ -58,6 +64,7 @@ class HomeCtrl:
                                     case 4:
                                         StudentCtrl.lister_cours(user)
                                         while (True):
+                                            Ux.clear()
                                             choix = StudentView.menu(StudentView.sub__menu)
                                             match(choix):
                                                 case 1:
@@ -66,13 +73,16 @@ class HomeCtrl:
                                                     StudentCtrl.passer_certification(user)
                                                 case 3:
                                                     break
+                                            Ux.pause()
                                         
                                     case 5:
                                         pass
                                     case 6:
                                         break
+                                Ux.pause()
                         case "ADMIN":
                             while True:
+                                Ux.clear()
                                 choix = AdminView.menu()
                                 match(choix):
                                     case 1:
@@ -86,7 +96,8 @@ class HomeCtrl:
                                         # tableau
                                         pass  
                                     case 4:
-                                        break                  
+                                        break   
+                                Ux.pause()               
             elif choice == "2":
                 UserCtrl.create()  
             elif choice == "3":

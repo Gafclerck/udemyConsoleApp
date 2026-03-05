@@ -1,6 +1,6 @@
 from views.AdminVew import AdminView
 from models.user import User
-from utils.io import yes_or_no
+from utils.io import Io
 
 class AdminCtrl:
     @staticmethod
@@ -17,12 +17,12 @@ class AdminCtrl:
             # Déterminer l'action
             if selected_user["etat"] == 1:
                 # L'utilisateur est actif, le bloquer
-                if yes_or_no(f"Bloquer {selected_user['name']}?") == "yes":
+                if Io.yes_or_no(f"Bloquer {selected_user['name']}?") == "yes":
                     User.update(selected_user["email"], {"etat": 0})
                     print(f"{selected_user['name']} a été bloqué !")
             else:
                 # L'utilisateur est bloqué, le débloquer
-                if yes_or_no(f"Débloquer {selected_user['name']}?") == "yes":
+                if Io.yes_or_no(f"Débloquer {selected_user['name']}?") == "yes":
                     User.update(selected_user["email"], {"etat": 1})
                     print(f"{selected_user['name']} a été débloqué !")
 
