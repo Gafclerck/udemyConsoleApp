@@ -2,15 +2,15 @@ from tinydb import Query
 from database.db import db
 
 class User:
-    def __init__(self, name, email, password, role):
+    def __init__(self, name, email, password, role, etat = 1):
         self.name = name
         self.email = email
         self.password = password
         self.role = role
-        self.etat = 1
-        
+        self.etat = etat
+    
     def save(self):
-        """Sauvegarder l'utilisateur dans la base de donnees"""
+        # Sauvegarder l'utilisateur dans la base de donnees
         users_table = db.table('users')
         users_table.insert({
             'name': self.name,
@@ -19,10 +19,10 @@ class User:
             'role': self.role,
             "etat":self.etat
         })
-        
+
     @staticmethod
     def findByEmail(email):
-        """Trouver un utilisateur par son email"""
+        # Trouver un utilisateur par son email
         users_table = db.table('users')
         UserQuery = Query()
         return users_table.get(UserQuery.email == email)
@@ -32,6 +32,7 @@ class User:
         #recuperer et renvoyer tous les users
         users_table = db.table('users')
         users = users_table.all()
+        users = [klas(u["name"], u["email"], u["password"], u["role"] , u["etat"])for u in users]
         return users
 
     def update(self , updated_values):
@@ -39,4 +40,3 @@ class User:
         course_table = db.table("users")
         query = Query()
         course_table.update(updated_values, query.email == self.email)
-        # pass

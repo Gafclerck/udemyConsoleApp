@@ -1,4 +1,3 @@
-## Fonctionnalités
 
 ### Étudiant
 
@@ -65,7 +64,7 @@
 
 ## ce qu j'ai ajouter
 
-- j'ai ajouter utils et jel'ai utiliser dans student_ctrl our les questions de oui ou non
+- j'ai ajouter utils et je l'ai utiliser dans student_ctrl pour les questions de oui ou non
 
 ## Architecture
 

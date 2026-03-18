@@ -23,8 +23,10 @@ class HomeCtrl:
                 user = UserCtrl.connection()
                 if not user:
                     print("Mot de pass ou email incerrect !")
+                    Ux.pause()
                 elif user["etat"] == 0:
                     print("Hoho mon gar t'es bloqué !! sort !!")
+                    Ux.pause()
                 else:
                     match(user["role"]):
                         case "PROFESSEUR":

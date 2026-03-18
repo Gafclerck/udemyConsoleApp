@@ -2,8 +2,6 @@ from models.student import Student
 from models.admin import Admin
 from models.prof import Prof
 from models.user import User
-from models.course import Course
-from views.CourseView import CourseView
 
 class UserCtrl:
     @staticmethod
@@ -31,7 +29,7 @@ class UserCtrl:
         """Permet à l'utilisateur de se connecter"""
         email = input("Email ? ")
         password = input("Mot de passe ? ")
-        
+
         user = User.findByEmail(email)
         if user and user["password"] == password:
             print(f"Bienvenue {user['name']} !")

@@ -24,16 +24,12 @@ class AdminView:
         if not users:
             print("Aucun utilisateur trouvé.")
             return None
-        print("--- Liste des utilisateurs ---")
         for index, user in enumerate(users, 1):
-            etat = "Actif" if user["etat"] == 1 else "Bloqué"
-            print(f"{index}- {user['name']} ({user['email']}) - Role: {user['role']} - État: {etat}")
+            etat = "Actif" if user.etat == 1 else "Bloqué"
+            print(f"{index}- {user.name} ({user.email}) - Role: {user.role} - État: {etat}")
         if with_select:
             choice = Io.get_int("Choix : ")
             if 1 <= choice <= len(users):
                 return users[choice-1]
             return None
         print()
-
-    
-            
